@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>JinhaiJSTemplate</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="keywords" content="jinhai,js template,template">
+    <meta name="description" content="JinhaiJSTemplate">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="../dist/jinhaijstemplate.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col p-4">
+                <div>普通模板</div>
+                <div id="single"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col p-4">
+                <div>循环模板</div>
+                <div id="multi"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/html" id="tpl">
+        <a href="{{url}}" title="{{title}}"><img src="{{image}}" alt="{{title}}" width="{{width}}" height="{{height}}" /></a>
+    </script>
+
+    <script type="text/html" id="tpl2">
+        {{each datas as value index}}
+        <a href="{{value.url}}" title="{{value.title}}">
+            <img src="{{value.image}}" alt="{{value.title}}" width="{{width}}" height="{{height}}" />
+        </a>
+        {{/each}}
+    </script>
+
+    <script>
+        var _testData = {
+            "width": "270",
+            "height": "140",
+            "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+            "url": "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+            "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+            "width": "270",
+            "height": "140"
+        };
+        var _testData2 = {
+            "width": "270",
+            "height": "140",
+            "datas": [{
+                    "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+                    "url": "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+                    "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+                    "width": "270",
+                    "height": "140"
+                },
+                {
+                    "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+                    "url": "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+                    "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+                    "width": "270",
+                    "height": "140"
+                },
+                {
+                    "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+                    "url": "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+                    "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+                    "width": "270",
+                    "height": "140"
+                },
+                {
+                "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+                "url":
+                "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+                "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+                "width": "270",
+                "height": "140"
+                },
+                {
+                "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+                "url":
+                "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+                "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+                "width": "270",
+                "height": "140"
+                },
+                {
+                "title": "\u7741\u5927\u53cc\u773c\u770b\u6570\u5b57\u62a5",
+                "url":
+                "http:\/\/share.gzdsw.com\/?r=share\/index\/click&q=RVJHRUY7RlJGTE47R1JGTDtIUnZdZ0V4WYSLYUdnj25%2BSoN6gmePeY5Kf3dHRTpIWQljOGUzNDVkOWRhNzc5ZGIzNTRmOTcyODJmNjJlOTc5Nw%7C%7C",
+                "image": "http:\/\/share.gzdsw.com\/upload\/201111\/046.jpg",
+                "width": "270",
+                "height": "140"
+                }
+            ]
+        };
+
+        document.querySelector('#single').innerHTML = (new JinhaiJSTemplate).render('tpl', _testData);
+        document.querySelector('#multi').innerHTML = (new JinhaiJSTemplate).render('tpl2', _testData2);
+
+    </script>
+
+</body>
+
+</html>

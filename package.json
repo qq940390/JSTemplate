@@ -1,0 +1,29 @@
+{
+    "name": "jinhaijstemplate",
+    "version": "1.0.0",
+    "description": "JinhaiJSTemplate",
+    "main": "index.js",
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "babel src --out-dir dist && uglifyjs dist/jinhaijstemplate.js -o dist/jinhaijstemplate.min.js",
+        "publish": "npm run clean && npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/qq940390/JSTemplate.git"
+    },
+    "keywords": [
+        "jstemplate"
+    ],
+    "author": "wujinhai",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/qq940390/JSTemplate/issues"
+    },
+    "homepage": "https://github.com/qq940390/JSTemplate#readme",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-es2015": "^6.24.1",
+        "uglify-js": "^3.9.1"
+    }
+}
