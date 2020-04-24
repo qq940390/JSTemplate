@@ -57,7 +57,6 @@ module.exports = function (grunt) {
     grunt.registerTask('serve', [
         'connect:server',
         'watch',
-        'babel',
     ]);
 
     grunt.registerTask('default', [
