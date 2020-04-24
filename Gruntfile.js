@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                     livereload: '<%=connect.options.livereload%>'  //监听前面声明的端口  35729
                 },
                 files: [  //下面文件的改变就会实时刷新网页
-                    'dist/{,*/}*.html',
+                    'index.html',
                     'src/{,*/}*.js'
                 ]
             }
