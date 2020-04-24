@@ -78,3 +78,5 @@ class JinhaiJSTemplate {
     }
 
 }
+
+module.exports = JinhaiJSTemplate;

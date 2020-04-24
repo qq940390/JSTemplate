@@ -105,4 +105,6 @@ var JinhaiJSTemplate = /*#__PURE__*/function () {
 
   return JinhaiJSTemplate;
 }();
+
+module.exports = JinhaiJSTemplate;
 //# sourceMappingURL=jinhaijstemplate.js.map
