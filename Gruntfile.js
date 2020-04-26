@@ -1,35 +1,28 @@
 module.exports = function (grunt) {
 
-    require('load-grunt-tasks')(grunt); //加载所有的任务
-    //require('time-grunt')(grunt); 如果要使用 time-grunt 插件
-
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        connect: {
-            options: {
-                port: 9000,
-                hostname: 'localhost', //默认就是这个值，可配置为本机某个 IP，localhost 或域名
-                livereload: 35729  //声明给 watch 监听的端口
-            },
-            server: {
-                options: {
-                    open: true, //自动打开网页 http://
-                    base: [
-                        ''  //主目录
-                    ]
-                }
-            }
-        },
         watch: {
-            livereload: {
-                options: {
-                    livereload: '<%=connect.options.livereload%>'  //监听前面声明的端口  35729
-                },
+            options: {
+                spawn: false
+            },
+            html: {
                 files: [  //下面文件的改变就会实时刷新网页
                     'index.html',
                     'src/{,*/}*.js'
-                ]
+                ],
+                tasks: ['bsReload:all']
+            }
+
+        },
+        uglify: {
+            options: {
+                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                src: 'dist/<%= pkg.name %>.js',
+                dest: 'dist/<%= pkg.name %>.min.js'
             }
         },
         babel: {
@@ -43,20 +36,38 @@ module.exports = function (grunt) {
                 }
             }
         },
-        uglify: {
-            options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-            },
-            build: {
-                src: 'dist/<%= pkg.name %>.js',
-                dest: 'dist/<%= pkg.name %>.min.js'
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src: [
+                        'index.html',
+                        'src/{,*/}*.js'
+                    ]
+                },
+                options: {
+                    background: true,
+                    watchTask: true,
+                    server: {
+                        baseDir: "./"
+                    }
+                }
+            }
+        },
+        bsReload: {
+            all: {
+                reload: true
             }
         }
     });
 
-    grunt.registerTask('serve', [
-        'connect:server',
-        'watch',
+    grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+
+    grunt.registerTask('browser', [
+        'browserSync',
+        'watch'
     ]);
 
     grunt.registerTask('default', [
