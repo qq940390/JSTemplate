@@ -18,12 +18,6 @@ module.exports = function (grunt) {
                     'src/js/*.js'
                 ],
                 tasks: ['babel', 'bsReload:js']
-            },
-            scss: {
-                files: [  //下面文件的改变就会实时刷新网页
-                    'src/scss/**/*.scss'
-                ],
-                tasks: ['sass:dev', 'autoprefixer', 'bsReload:css']
             }
 
         },
@@ -36,34 +30,6 @@ module.exports = function (grunt) {
                     dest: 'dist/',
                     src: 'index.html'
                 }]
-            }
-        },
-        sass: {
-            dev: {
-                options: {
-                    sourcemap: 'auto', // 可选 auto, file, inline, none
-                    style: 'expanded', // 可选 nested, compact, compressed, expanded
-                },
-                files: [{
-                    expand: true,
-                    cwd: 'src/scss',
-                    src: ['**/*.scss'],
-                    dest: 'dist/css',
-                    ext: '.css'
-                }]
-            },
-        },
-        cssmin: {
-            options: {
-                compatibility: 'ie8', //设置兼容模式
-                noAdvanced: true //取消高级特性
-            },
-            minify: {
-                expand: true,
-                cwd: 'dist/css/',
-                src: ['*\*/\*.css', '!*.min.css'], //.css文件，但不包括.min.css文件
-                dest: './dist/css',
-                ext: '.min.css'
             }
         },
         babel: {
@@ -92,15 +58,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        autoprefixer: {
-            options: {
-                browsers: ['last 5 versions', 'ie 8']
-            },
-            css: {
-                src: 'src/scss/**/*.css',
-                dest: 'dist/css/**/*.css'
-            }
-        },
         browserSync: {
             dev: {
                 bsFiles: {
@@ -122,9 +79,6 @@ module.exports = function (grunt) {
             html: {
                 reload: "index.html"
             },
-            css: {
-                reload: ".css"
-            },
             js: {
                 reload: ".js"
             },
@@ -135,9 +89,6 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-babel');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-browser-sync');
@@ -146,7 +97,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('browser', [
         'copy',
-        'sass',
         'babel',
         'browserSync',
         'watch',
@@ -154,8 +104,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'clean',
-        'sass',
-        'cssmin',
         'babel',
         'uglify'
     ]);
